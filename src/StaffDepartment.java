@@ -4,38 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StaffDepartment {
-    private String name;
+    private final String departmentName;
     private static List<StaffDepartment> departments = new ArrayList<>();
-    private List<Staff> staff = new ArrayList<>();
+    private static List<StaffMember> staffMembers = new ArrayList<>();
 
-
-    private static StaffDepartment createDepartment() {
-        StaffDepartment department = new StaffDepartment(name);
-        department.add(department);
-        return department;
-    }
-
-    private void addStaffMember(Staff staffMember) {
-        staff.add(staffMember);
-    }
-
-    public List getStaff() {
-        return staff;
+    public static StaffDepartment createDepartment(String departmentName) throws NotUniqueNameException {
+        StaffDepartment newDepartment = new StaffDepartment(departmentName);
+        departments.add(newDepartment);
+        return newDepartment;
     }
 
 
-    private boolean isUnique(String name) {
+    private boolean isUnique(String departmentName) {
         for (StaffDepartment department : departments) {
-            if (department.name.equals(name)) {
+            if (department.departmentName.equals(departmentName)) {
             }
         }
         return true;
     }
 
-    private StaffDepartment(String name) throws NotUniqueNameException {
-        if (!isUnique(name)) {
-            throw new NotUniqueNameException("Nazwa dzialu nie jest unikalna: " + name);
+    private StaffDepartment(String departmentName) throws NotUniqueNameException {
+        if (!isUnique(departmentName)) {
+            throw new NotUniqueNameException("Name of the department is not unique " + departmentName);
         }
-        this.name = name;
+        this.departmentName = departmentName;
+        departments.add(this);
     }
+
+    public List<StaffMember> getStaffMembers() {
+        return staffMembers;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+
 }
