@@ -1,12 +1,16 @@
+package Department;
+
 import Exceptions.NotUniqueNameException;
+import Staff.StaffMember;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StaffDepartment {
-    private final String departmentName;
+    private String departmentName;
     private static List<StaffDepartment> departments = new ArrayList<>();
-    private static List<StaffMember> staffMembers = new ArrayList<>();
+    private List<StaffMember> staffMembers = new ArrayList<>();
 
     public static StaffDepartment createDepartment(String departmentName) throws NotUniqueNameException {
         StaffDepartment newDepartment = new StaffDepartment(departmentName);

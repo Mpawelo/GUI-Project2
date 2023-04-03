@@ -1,10 +1,13 @@
+package Staff;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-abstract class StaffMember implements Comparable<StaffMember> {
+import Department.StaffDepartment;
 
-    private static List<StaffMember> staffMemberList = new ArrayList<>();
+public abstract class StaffMember implements Comparable<StaffMember> {
+
+    public static List<StaffMember> staffMemberList = new ArrayList<>();
     private final String staffMemberName;
     private final String staffMemberSurname;
     private final String dateOfBirth;
