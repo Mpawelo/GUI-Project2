@@ -1,7 +1,7 @@
 package Exceptions;
 
 public class NotUniqueNameException extends Exception {
-    String reason;
+    private String reason;
 
     public NotUniqueNameException(String reason) {
         super(reason);
