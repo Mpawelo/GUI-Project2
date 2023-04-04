@@ -6,15 +6,15 @@ public class User extends StaffMember {
 
     public String login;
     public String password;
-
     public String inicial;
+
 
     public User(String staffMemberName, String staffMemberSurname, String dateOfBirth, StaffDepartment staffDepartment) {
         super(staffMemberName, staffMemberSurname, dateOfBirth, staffDepartment);
         this.login = login;
         this.password = password;
-       /* int lenght = inicial.length();
-        for (int i = 0; i < inicial; i++)*/
+        this.inicial = inicial + staffMemberName.charAt(0) + "." + staffMemberSurname.charAt(0) + ".";
+
     }
 
     public String getLogin() {
@@ -24,4 +24,6 @@ public class User extends StaffMember {
     public String getPassword() {
         return password;
     }
+
+
 }
