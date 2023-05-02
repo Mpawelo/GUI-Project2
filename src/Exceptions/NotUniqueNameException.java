@@ -1,7 +1,7 @@
 package Exceptions;
 
 public class NotUniqueNameException extends Exception {
-    private String reason;
+    private String reason = "Not unique name";
 
     public NotUniqueNameException(String reason) {
         super(reason);
@@ -10,7 +10,9 @@ public class NotUniqueNameException extends Exception {
 
     @Override
     public String toString() {
-        return reason;
+        return "NotUniqueNameException{" +
+                "reason='" + reason + '\'' +
+                '}';
     }
 
 }
