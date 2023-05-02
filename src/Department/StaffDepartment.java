@@ -3,12 +3,14 @@ package Department;
 import Exceptions.NotUniqueNameException;
 import Staff.StaffMember;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class StaffDepartment {
     private String departmentName;
+    public long ID;
+    public static long IDcounter = 0;
+
     private static List<StaffDepartment> departments = new ArrayList<>();
     private List<StaffMember> staffMembers = new ArrayList<>();
 
@@ -22,6 +24,7 @@ public class StaffDepartment {
     private boolean isUnique(String departmentName) {
         for (StaffDepartment department : departments) {
             if (department.departmentName.equals(departmentName)) {
+                return false;
             }
         }
         return true;
@@ -33,15 +36,19 @@ public class StaffDepartment {
         }
         this.departmentName = departmentName;
         departments.add(this);
+        this.ID = IDcounter++;
     }
 
     public List<StaffMember> getStaffMembers() {
         return staffMembers;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public String toString() {
+        return "Department{" +
+                "departmentName='" + departmentName + '\'' +
+                ", ID=" + ID +
+                ", staffMembers=" + staffMembers +
+                '}';
     }
-
 
 }

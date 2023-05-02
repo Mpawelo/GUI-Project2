@@ -10,10 +10,13 @@ public abstract class StaffMember implements Comparable<StaffMember> {
 
     private static List<StaffMember> staffMemberList = new ArrayList<>();
 
-    protected final String staffMemberName;
-    protected final String staffMemberSurname;
+    protected String staffMemberName;
+    protected String staffMemberSurname;
     protected LocalDate dateOfBirth;
     protected final StaffDepartment staffDepartment;
+    public long ID;
+    public static long IDcounter = 0;
+
 
     public StaffMember(String staffMemberName, String staffMemberSurname, String dateOfBirth, StaffDepartment staffDepartment) {
         this.staffMemberName = staffMemberName;
@@ -21,6 +24,8 @@ public abstract class StaffMember implements Comparable<StaffMember> {
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
         this.staffDepartment = staffDepartment;
         staffMemberList.add(this);
+        this.ID = IDcounter++;
+
     }
 
     public static List<StaffMember> getStaffMemberList() {
@@ -33,9 +38,19 @@ public abstract class StaffMember implements Comparable<StaffMember> {
         return staffMemberName;
     }
 
+    public void setStaffMemberName(String staffMemberName) {
+
+        this.staffMemberName = staffMemberName;
+    }
+
     public String getStaffMemberSurname() {
 
         return staffMemberSurname;
+    }
+
+    public void setStaffMemberSurname(String staffMemberSurname) {
+
+        this.staffMemberSurname = staffMemberSurname;
     }
 
     public LocalDate getDateOfBirth() {
@@ -58,6 +73,16 @@ public abstract class StaffMember implements Comparable<StaffMember> {
             return result;
         }
         return dateOfBirth.compareTo(staffMember.dateOfBirth);
+    }
+
+    public String toString() {
+        return "StaffMember{" +
+                "staffMemberName='" + staffMemberName + '\'' +
+                ", staffMemberSurname='" + staffMemberSurname + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", staffDepartment=" + staffDepartment +
+                ", ID=" + ID +
+                '}';
     }
 
 
