@@ -1,13 +1,12 @@
 package Brigade;
 
 import Staff.StaffMember;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Brigade {
-
     public static List<StaffMember> staffMemberList = new ArrayList<>();
-
     public String brigadeName;
     public String foreman;
     public long ID;
@@ -25,10 +24,6 @@ public class Brigade {
 
     public void add(List<StaffMember> newStaffMemberList) {
         staffMemberList.addAll(newStaffMemberList);
-    }
-
-    public String getBrigadeName() {
-        return brigadeName;
     }
 
     @Override

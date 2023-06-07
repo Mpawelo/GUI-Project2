@@ -12,6 +12,7 @@ public class Job implements Runnable {
     public static List<Work> workList = new ArrayList<>();
 
     private Brigade brigade;
+    private boolean isdone;
     LocalDate startDate;
     LocalDate endDate;
     public long ID;
@@ -22,8 +23,16 @@ public class Job implements Runnable {
         UNPLANNED
     }
 
+    public static List<Work> getWorkList() {
+        return workList;
+    }
 
-    public void addWork(Work work) {  //metoda dodająca pracę do zlecenia
+    public void finishJob() {
+        endDate = LocalDate.now();
+        isdone = true;
+    }
+
+    public static void addWork(Work work) {  //metoda dodająca pracę do zlecenia
         workList.add(work);
     }
 
@@ -105,10 +114,14 @@ public class Job implements Runnable {
         return endDate;
     }
 
-
     public Brigade getBrigade() {
         return brigade;
     }
+
+
+
+
+
 
     @Override
     public void run() {

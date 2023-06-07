@@ -22,9 +22,6 @@ public class Foreman extends User {
         this.ID = IDcounter++;
     }
 
-    public List getBrigades() {
-        return brigades;
-    }
 
     public List getJobs() {
         return jobs;

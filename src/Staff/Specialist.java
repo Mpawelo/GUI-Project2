@@ -14,10 +14,13 @@ public class Specialist extends StaffMember {
         this.ID = IDcounter++;
     }
 
+
+
     public String getSpecialization() {
         return specialization;
     }
 
+    @Override
     public String toString() {
         return "Specialist{" +
                 "staffMemberName='" + staffMemberName + '\'' +

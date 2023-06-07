@@ -2,6 +2,7 @@ package Staff;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import Department.StaffDepartment;
@@ -13,7 +14,7 @@ public abstract class StaffMember implements Comparable<StaffMember> {
     protected String staffMemberName;
     protected String staffMemberSurname;
     protected LocalDate dateOfBirth;
-    protected final StaffDepartment staffDepartment;
+    protected StaffDepartment staffDepartment;
     public long ID;
     public static long IDcounter = 0;
 
@@ -23,14 +24,22 @@ public abstract class StaffMember implements Comparable<StaffMember> {
         this.staffMemberSurname = staffMemberSurname;
         this.dateOfBirth = LocalDate.parse(dateOfBirth);
         this.staffDepartment = staffDepartment;
-        staffMemberList.add(this);
         this.ID = IDcounter++;
 
     }
 
-    public static List<StaffMember> getStaffMemberList() {
+    public static StaffMember createStaffMember(String staffMemberName, String staffMemberSurname, String dateOfBirth, StaffDepartment staffDepartment) {
+        StaffMember newStaffMember = new StaffMember(staffMemberName, staffMemberSurname, dateOfBirth, staffDepartment) {
+        };
+        staffMemberList.add(newStaffMember);
+        return newStaffMember;
+    }
 
-        return staffMemberList;
+    public static List<StaffMember> getStaffMembers() {
+
+        List<StaffMember> sortedList = new ArrayList<>(staffMemberList);
+        Collections.sort(sortedList);
+        return sortedList;
     }
 
     public String getStaffMemberName() {
@@ -56,6 +65,15 @@ public abstract class StaffMember implements Comparable<StaffMember> {
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
+    public void setDateOfBirth(String dateOfBirth) {
+
+        this.dateOfBirth = LocalDate.parse(dateOfBirth);
+    }
+
+    public void setStaffDepartment(StaffDepartment staffDepartment) {
+
+        this.staffDepartment = staffDepartment;
+    }
 
     public StaffDepartment getStaffDepartment() {
 
@@ -75,15 +93,14 @@ public abstract class StaffMember implements Comparable<StaffMember> {
         return dateOfBirth.compareTo(staffMember.dateOfBirth);
     }
 
+    @Override
     public String toString() {
-        return "StaffMember{" +
-                "staffMemberName='" + staffMemberName + '\'' +
-                ", staffMemberSurname='" + staffMemberSurname + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", staffDepartment=" + staffDepartment +
-                ", ID=" + ID +
-                '}';
+        return  staffMemberName + "  \n" +
+                staffMemberSurname + "  \n" +
+                dateOfBirth + "  \n" +
+                "Dept: " + staffDepartment.getDepartmentName();
     }
+
 
 
 }

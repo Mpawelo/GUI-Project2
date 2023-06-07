@@ -25,6 +25,11 @@ public class Work extends Thread {
     public long ID;
     public static long IDcounter = 0;
 
+    public void finishAllWorks() {
+        endDateTime = LocalDateTime.now();
+        isDone = true;
+    }
+
 
     public Work(WorkType workType, String description, int workTime) {
         this.workType = workType;
@@ -37,6 +42,9 @@ public class Work extends Thread {
 
     @Override
     public void run() {
+        if (isDone) {
+            return;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd--HH:mm:ss");
         startDateTime = LocalDateTime.now();
         System.out.println(this.description + " started: " + startDateTime.format(formatter));
@@ -92,13 +100,11 @@ public class Work extends Thread {
 
     @Override
     public String toString() {
-        return "Work{" +
-                "workType=" + workType +
-                ", workTime=" + workTime +
-                ", isDone=" + isDone +
-                ", description='" + description + '\'' +
-                ", ID=" + ID +
-                '}';
+        return "workType= " + workType + '\'' +
+                workTime + '\'' +
+                " isDone= " +
+                isDone + '\'' +
+                ", ID=" + ID;
     }
 
 }
